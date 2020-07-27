@@ -1,0 +1,44 @@
+@model aspnetcore_supermercado.DTO.ProdutoDTO
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<h3>Novo Produto</h3>
+<hr>
+
+<form class="form-horizontal" asp-action="Salvar" asp-controller="Produtos" method="POST">
+    <input type="hidden" asp-for="Id" value="0">
+
+    <label asp-for="Nome">Nome</label>
+    <input type="text" asp-for="Nome" class="form-control" placeholder="Nome do produto">
+    <span asp-validation-for="Nome"></span>
+    <br>
+
+    <label asp-for="CategoriaId">Categoria</label>
+    <select class="form-control"  asp-for="CategoriaId" asp-items='@(new SelectList(@ViewBag.ListaDeCategorias, "Id", "Nome"))'></select>
+    <br>
+
+    <label asp-for="FornecedorId">Fornecedor</label>
+    <select class="form-control" asp-for="FornecedorId" asp-items='@(new SelectList(@ViewBag.ListaDeFornecedores, "Id", "Nome"))'></select>
+    <br>
+
+    <label asp-for="PrecoDeCusto">Preço de custo</label>
+    <input class="form-control" asp-for="PrecoDeCusto" type="number" step="any" placeholder="00.00">
+    <span asp-validation-for="PrecoDeCusto"></span>
+    <br>
+
+    <label asp-for="PrecoDeVenda">Preço de venda</label>
+    <input class="form-control" asp-for="PrecoDeVenda" type="number" step="any" placeholder="00.00">
+    <span asp-validation-for="PrecoDeVenda"></span>
+    <br>
+
+    <label asp-for="Medicao">Medição</label>
+    <select class="form-control" asp-for="Medicao">
+        <option value="0">Litro</option>
+        <option value="1">Kilo</option>
+        <option value="2">Unidade</option>
+    </select>
+    <br>
+    
+    <button class="btn btn-success">Cadastrar</button>
+</form>
